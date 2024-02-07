@@ -1,0 +1,42 @@
+create database assessment1;
+
+use assessment1;
+
+create table product(
+pro_id int auto_increment primary key,
+pro_name varchar(200) not null,
+pro_price varchar(200) not null,
+pro_com int not null
+);
+
+insert into product(pro_name,pro_price,pro_com)
+values
+('Mother Bord','3200','15'),
+('key Bord','450','16'),
+('ZIP drive','250','14'),
+('CD drive','850','12'),
+('DVD drive','950','12'),
+('Mouse','150','12'),
+('Printer','2650','14'),
+('Speaker','550','16');
+
+select * from product;
+
+-- Write sql query to find the items whose prices are higher than or equal 250rs.
+-- Order the result by product price in descending, then product name in   
+
+select * from product where pro_price >= 250 order by pro_price desc,pro_name;
+
+-- Write a sql query to find the cheapest item. Return pro_name and pro_price.
+
+select pro_name,pro_price from product where pro_price =(select min(pro_price) from product);
+
+-- Write the sql query to calculate the average price of the items for each
+-- company. Return average price and company code.
+
+select avg(pro_price),pro_com from product group by pro_com;
+
+-- Write the sql query to find the average total for all the product mention in the
+-- table
+
+select avg(pro_price) from product where pro_com = 16;
